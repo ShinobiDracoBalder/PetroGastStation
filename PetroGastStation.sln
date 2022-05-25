@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32126.317
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetroGastStation.Web", "PetroGastStation.Web\PetroGastStation.Web.csproj", "{073B3142-07FA-4B97-9ADE-3FCD2A7BDB38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetroGastStation.Common", "PetroGastStation.Common\PetroGastStation.Common.csproj", "{10309DB3-0AEE-46A3-B3F0-B01E0D52BED9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{073B3142-07FA-4B97-9ADE-3FCD2A7BDB38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{073B3142-07FA-4B97-9ADE-3FCD2A7BDB38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{073B3142-07FA-4B97-9ADE-3FCD2A7BDB38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{073B3142-07FA-4B97-9ADE-3FCD2A7BDB38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10309DB3-0AEE-46A3-B3F0-B01E0D52BED9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10309DB3-0AEE-46A3-B3F0-B01E0D52BED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10309DB3-0AEE-46A3-B3F0-B01E0D52BED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10309DB3-0AEE-46A3-B3F0-B01E0D52BED9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {32599E53-DD5C-4CF7-B035-CB0EFF350804}
+	EndGlobalSection
+EndGlobal
