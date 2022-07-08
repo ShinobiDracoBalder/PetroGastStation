@@ -1,0 +1,76 @@
+﻿@model CreatePost
+
+@{
+    ViewData["Title"] = "Single File Upload";
+
+}
+<form asp-action="Upload" asp-controller="ExcelDataReader" method="post" enctype = "multipart/form-data">
+    @if (Model.IsResponse)
+    {
+        if (Model.IsSuccess)
+        {
+            <div class="alert alert-success">
+                @Model.Message
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger">
+                @Model.Message
+            </div>
+        }
+    }
+    <div class="row mt-2">
+        <div class="col-12">
+            <label class="col-form-label">Enter File Name For Save</label>
+            <input asp-for="FileName" class="form-control" />
+            <span asp-validation-for="FileName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-12">
+            <label class="col-form-label">Select File</label>
+            <input asp-for="File" class="form-control" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
+            <span asp-validation-for="File" class="text-danger"></span>
+        </div>
+    </div>
+
+
+    <div class="row mt-2">
+        <div class="col-12">
+            <button type="submit" class="btn btn-success">Upload File</button>
+        </div>
+    </div>
+</form>
+
+<div class="row row-cols-1 row-cols-md-4 g-4 mt-1">
+    @if (Model.FullGasStations.Count() > 0)
+    {
+        @foreach (var item in Model.FullGasStations)
+        {
+            <div class="col">
+                <div class="card h-100">
+                    @*<div class="text-center zoom">
+                        <img src="@item.ImageFullPath" style="height:150px; max-width:200px;" class="text-center" alt=@item.Name />
+                    </div>*@
+                    <div class="card-body">
+                        <h5 class="card-title text-navy"> @item.Permiso</h5>
+                        <p class="card-text smfnt">@item.Nombre</p>
+                        <h5 class="text-muted">Regular  :@Html.DisplayFor(modelItem => item.PrecioRegular)</h5>
+                        <h5 class="text-muted">Premium  :@Html.DisplayFor(modelItem => item.PrecioPremium)</h5>
+                        <h5 class="text-muted">Diesel   :@Html.DisplayFor(modelItem => item.PrecioDiesel)</h5>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a asp-action="Details" asp-route-id="@item.IdPrecio" class="btn btn-sm btn-secondary">Details</a>
+                        <a asp-action="Add" asp-route-id="@item.IdPrecio" class="btn btn-sm btn-primary">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <h3>No hay productos con su criterio de búsqueda</h3>
+    }
+</div>

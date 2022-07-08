@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<form id="form1" asp-action="OnPost" method="post" enctype="multipart/form-data">
+<div class="text-center">
+
+    <input type="file" id="file1" name="file" />
+
+</div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            
+        });
+         document.getElementById('file1').onchange = function () {
+       document.getElementById('form1').submit();
+     };
+    </script>
+}

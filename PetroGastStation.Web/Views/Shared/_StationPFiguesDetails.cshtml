@@ -1,0 +1,59 @@
+﻿@model StationGasViewModel 
+    
+    
+    @*StationGasVMDetails*@
+
+<h4>Petro Figues Detalle</h4>
+<hr />
+<div class="row">
+    <div class="col-sm">
+        <div class="card text-center h-100 border-secondary">
+            <div class="card-header border-success">
+                @Html.DisplayFor(model => model.Nombre)
+            </div>
+            <div class="card-body text-success">
+                <h5 class="card-title  text-navy">No Permiso :@Html.DisplayFor(model => model.Permiso)</h5>
+                @Html.DisplayNameFor(model => model.PrecioRegular)<p class="card-text">  @Html.DisplayFor(model => model.PrecioRegular)</p>
+                @Html.DisplayNameFor(model => model.PrecioPremium)<p class="card-text">  @Html.DisplayFor(model => model.PrecioPremium)</p>
+                @Html.DisplayNameFor(model => model.PrecioDiesel)<p class="card-text">  @Html.DisplayFor(model => model.PrecioDiesel)</p>
+            </div>
+            <div class="card-footer text-muted">
+                <a asp-action="Index" class="btn btn-outline-success">Regresar</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm">
+        <div class="card text-center">
+            <div class="card-header">
+                PRECIO SUGERIDO SISTEMA
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"> </h5>
+                @Html.DisplayNameFor(model => model.SugeridoPrecioRegular)<p class="card-text">  @Html.DisplayFor(model => model.SugeridoPrecioRegular)</p>
+                @Html.DisplayNameFor(model => model.SugeridoPrecioPremium)<p class="card-text">  @Html.DisplayFor(model => model.SugeridoPrecioPremium)</p>
+                @Html.DisplayNameFor(model => model.SugeridoPrecioDiesel)<p class="card-text">  @Html.DisplayFor(model => model.SugeridoPrecioDiesel)</p>
+
+            </div>
+            <div class="card-footer text-muted">
+
+            </div>
+        </div>
+    </div>
+    <div class="col-sm">
+        <div class="card text-center">
+            <div class="card-header">
+                PRECIO COMPETENCIA DIRECTA DEL SISTEMA
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"> </h5>
+                @Html.DisplayNameFor(model => model.DirectCompetitionRegularPrice)<p class="card-text">  @Html.DisplayFor(model => model.DirectCompetitionRegularPrice)</p>
+                @Html.DisplayNameFor(model => model.DirectCompetitionPremiumPrice)<p class="card-text">  @Html.DisplayFor(model => model.DirectCompetitionPremiumPrice)</p>
+                @Html.DisplayNameFor(model => model.DirectCompetitionDieselPrice)<p class="card-text">  @Html.DisplayFor(model => model.DirectCompetitionDieselPrice)</p>
+
+            </div>
+            <div class="card-footer text-muted">
+               
+            </div>
+        </div>
+    </div>
+</div>

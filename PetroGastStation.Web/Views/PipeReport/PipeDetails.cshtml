@@ -1,0 +1,46 @@
+﻿@model PetroGastStation.Web.Models.PipeReportViewModel
+@{
+    ViewData["Title"] = "PipeDetails";
+}
+
+
+
+<div class="card text-center">
+    <div class="card-header">
+        <h1>Detalle de PiPa</h1>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title" style="background-color:DodgerBlue;"> Razon Social  :@Model.RazonSocial</h5>
+        <p class="card-text" style="background-color:Tomato;"> Numero Permiso  :@Model.NumeroPermiso</p>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4"> TAR     :@Model.TAR</div>
+                <div class="col-sm-4"> Remision:@Model.Remision</div>
+                <div class="col-sm-4"> Factura :@Model.Factura</div>
+                <div class="w-100"></div>
+                <div class="col"> Fecha      :@Model.Fecha</div>
+                <div class="col"> Vencimiento:@Model.Vencimiento</div>
+                <div class="col"> Combustible:@Model.Combustible</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4"> LtsRecibidos: @Model.LtsRecibidos</div>
+                <div class="col-sm-4"> Litros      : @Model.Litros</div>
+                <div class="col-sm-4"> Subtotal    : @Model.Subtotal</div>
+                <div class="w-100"></div>
+                <div class="col"> IVA   : @Model.IVA</div>
+                <div class="col"> IEPS  : @Model.IEPS</div>
+                <div class="col"> Flete : @Model.Flete</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4"> IVAFlete: @Model.IVAFlete</div>
+                <div class="col-sm-4"> Ret     : @Model.Ret</div>
+                <div class="col-sm-4"> Desc    : @Model.Desc</div>
+                <div class="w-100"></div>
+                <div class="col"> Total        :  @Model.Total</div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+        <a asp-action="Index" class="btn btn-outline-success">Regresar</a>
+    </div>
+</div>

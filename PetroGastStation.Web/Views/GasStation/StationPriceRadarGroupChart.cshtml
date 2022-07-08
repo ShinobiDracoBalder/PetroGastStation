@@ -1,0 +1,131 @@
+﻿@using System.Linq;
+@model List<PriceSimpleReportViewModel>
+@{
+    ViewData["Title"] = "StationPriceRadarGroupChart";
+    var XLabels = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.permiso).ToList());
+    var XLabelNames = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.nombre).ToList());
+    var YValues = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.precioRegular).ToList());
+    var YValuesP = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.precioPremium).ToList());
+    var YValuesD = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.precioDiesel).ToList());
+
+}
+
+<h1 class="display-4">Gráfico Petro Figues de precio de estación por zona tipo radar en Agrupacion.</h1>
+
+
+<div class="chart-container">
+    <canvas id="radar-chart" width="800" height="450"></canvas>
+</div>
+
+<div class="chart-container">
+    <canvas id="myChartRadar" width="800" height="450"></canvas>
+</div>
+
+
+
+
+
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+
+
+    <script type="text/javascript">
+
+        @*new Chart(document.getElementById("myChartRadar").getContext('2d'), {
+            type: 'radar',
+            data: {
+                labels: @Html.Raw(XLabels),
+                datasets: [{
+                    label: 'Precio Regular Dataset',
+                    type: "radar",
+                    stack: "Base",
+                    backgroundColor: "#eece01",
+                    data: @Html.Raw(YValues),
+                }, {
+                    label: 'Precio Premium Dataset',
+                    type: "radar",
+                    stack: "Base",
+                    backgroundColor: "#87d84d",
+                    data: @Html.Raw(YValuesP),
+                }, {
+                    label: 'Precio Diesel Dataset',
+                    type: "radar",
+                    stack: "Base",
+                    backgroundColor: "#f8981f",
+                    data: @Html.Raw(YValuesD),
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Precios del combustible de acuerdo a la zona!'
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                    //xAxes: [{
+                    //    //stacked: true,
+                    //    stacked: true,
+                    //    ticks: {
+                    //        beginAtZero: true,
+                    //        maxRotation: 0,
+                    //        minRotation: 0
+                    //    }
+                    //}],
+                    //yAxes: [{
+                    //    stacked: true,
+                    //}]
+                },
+            }
+        });*@
+
+        new Chart(document.getElementById("radar-chart").getContext('2d'), {
+            type: 'radar',
+            data: {
+                labels: @Html.Raw(XLabelNames),
+                datasets: [
+                    {
+                        label: "Precio Regular",
+                        fill: true,
+                        backgroundColor: "rgba(26, 77, 46,0.2)",
+                        borderColor: "rgba(26, 77, 46,1)",
+                        pointBorderColor: "#F6FBF4",
+                        pointBackgroundColor: "rgba(26, 77, 46,1)",
+                        data: @Html.Raw(YValues)
+                    },
+                    {
+                        label: "Precio Premium",
+                        fill: true,
+                        backgroundColor: "rgba(153, 0, 0,0.2)",
+                        borderColor: "rgba(153, 0, 0,1)",
+                        pointBorderColor: "#fff",
+                        pointBackgroundColor: "rgba(153, 0, 0,1)",
+                        pointBorderColor: "#fff",
+                        data: @Html.Raw(YValuesP)
+                    },
+                    {
+                        label: "Precio Diesel",
+                        fill: true,
+                        backgroundColor: "rgba(27, 26, 23,0.2)",
+                        borderColor: "rgba(27,26,23,1)",
+                        pointBorderColor: "#202022",
+                        pointBackgroundColor: "rgba(27,26,23,1)",
+                        pointBorderColor: "#1B1A17",
+                        data: @Html.Raw(YValuesD)
+                    },
+                ]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Precios del combustible de acuerdo a la zona!'
+                }
+            }
+        });
+
+
+    </script>
+}

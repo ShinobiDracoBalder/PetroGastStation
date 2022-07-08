@@ -2,9 +2,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PetroGastStation.Web.Data;
+using PetroGastStation.Web.DataAccess.DBRepositories;
+using PetroGastStation.Web.Helpers;
+using PetroGastStation.Web.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +34,14 @@ namespace PetroGastStation.Web
                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
                .AddDataAnnotationsLocalization()
                .AddRazorRuntimeCompilation();
+
+            services.AddDbContext<DataContext>(o => {
+                o.UseSqlServer(Configuration.GetConnectionString("DefaultPetroConnection"));
+            });
+            services.AddRepository();
+            services.AddScoped<IDapperHelper, DapperHelper>();
+            services.AddScoped<IApiService, ApiService>();
+            services.AddScoped<IListERP, ListERP>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

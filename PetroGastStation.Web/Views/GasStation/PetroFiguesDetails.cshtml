@@ -1,0 +1,65 @@
+﻿@model StationGasVMDetails
+@{
+    ViewData["Title"] = "PetroFiguesDetails";
+}
+
+
+<div>
+    <partial name="_StationPFiguesDetails" />
+</div>
+<div class="row row-cols-1 row-cols-md-4 g-4 mt-1">
+    @if (Model.CompetitionDetails.Count() > 0)
+    {
+        @foreach (var item in Model.CompetitionDetails.ToList().OrderBy(c => c.MainPetro))
+        {
+            if (item.Permiso == "PL/23763/EXP/ES/2021" || item.Permiso == "PL/2542/EXP/ES/2015" || item.Permiso == "PL/20062/EXP/ES/2017" || item.Permiso == "PL/11249/EXP/ES/2015" || item.Permiso == "PL/21179/EXP/ES/2018" || item.Permiso == "PL/3162/EXP/ES/2015" || item.Permiso == "PL/1280/EXP/ES/2015" || item.Permiso == "PL/989/EXP/ES/2015" || item.Permiso == "PL/20612/EXP/ES/2017" || item.Permiso == "PL/21791/EXP/ES/2018" || item.Permiso == "PL/1938/EXP/ES/2015")
+            {
+                <div class="col">
+                <div class="card h-100 border-primary">
+                    @*<div class="text-center zoom">
+                        <img src="@item.ImageFullPath" style="height:150px; max-width:200px;" class="text-center" alt=@item.Name />
+                    </div>*@
+                    <div class="card-body text-danger">
+                        <div class="card-header">COMPETENCIA DIRECTA</div>
+                        <h5 class="card-title text-navy">No Permiso :@item.Permiso</h5>
+                        <p class="card-text smfnt">Razon Social     :@item.Nombre</p>
+                        <p class="card-text">PRECIO PUBLICO ESTACION PETRO FIGUE´S</p>
+                        <h5 class="text-muted">Regular  :@Html.DisplayFor(modelItem => item.PrecioRegular)</h5>
+                        <h5 class="text-muted">Premium  :@Html.DisplayFor(modelItem => item.PrecioPremium)</h5>
+                        <h5 class="text-muted">Diesel   :@Html.DisplayFor(modelItem => item.PrecioDiesel)</h5>
+                    </div>
+                    <div class="card-footer text-center bg-transparent border-success">
+                        <a asp-action="Details" asp-route-id="@item.IdPrecio" class="btn btn-sm btn-outline-secondary">Detalle</a>
+                        <a asp-action="Index" class="btn btn-outline-success">Regresar</a>
+                    </div>
+                </div>
+            </div>
+            }
+            else
+            {
+                <div class="col">
+                    <div class="card h-100">
+                        @*<div class="text-center zoom">
+                                <img src="@item.ImageFullPath" style="height:150px; max-width:200px;" class="text-center" alt=@item.Name />
+                            </div>*@
+                        <div class="card-body">
+                            <h5 class="card-title text-navy">No Permiso :@item.Permiso</h5>
+                            <p class="card-text smfnt">Razon Social     :@item.Nombre</p>
+                            <h5 class="text-muted">Regular  :@Html.DisplayFor(modelItem => item.PrecioRegular)</h5>
+                            <h5 class="text-muted">Premium  :@Html.DisplayFor(modelItem => item.PrecioPremium)</h5>
+                            <h5 class="text-muted">Diesel   :@Html.DisplayFor(modelItem => item.PrecioDiesel)</h5>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a asp-action="Details" asp-route-id="@item.IdPrecio" class="btn btn-sm btn-outline-secondary">Detalle</a>
+                            <a asp-action="Index" class="btn btn-outline-success">Regresar</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    }
+    else
+    {
+        <h3>No hay registros con su criterio de búsqueda</h3>
+    }
+</div>

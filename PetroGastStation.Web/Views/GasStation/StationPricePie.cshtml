@@ -1,0 +1,158 @@
+﻿@using System.Linq;
+@model List<PriceSimpleReportViewModel>
+@{
+    var XLabels = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.permiso).ToList());
+    var XLabelNames = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.nombre).ToList());
+    var XLabelERPs = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.ERP).ToList());
+    var YValues = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.precioRegular).ToList());
+    var YValuesP = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.precioPremium).ToList());
+    var YValuesD = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.precioDiesel).ToList());
+
+    ViewData["Title"] = "Pie Chart";
+}
+@{
+    ViewData["Title"] = "StationPricePie";
+}
+
+<h1>Dashboard en Lineas o en Barras Petro Figues </h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="container">
+                <div class="chart-container">
+                    <canvas id="line-chart" width="800" height="450"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="w-100"></div>
+        <div class="col">
+            <div class="container">
+                <div class="chart-container">
+                    <canvas id="bar-chart-grouped" width="800" height="450"></canvas>
+                </div>
+            </div>
+            @*<div class="container">
+            <div class="chart-container">
+                <canvas id="myChartNew" style="width:100%; height:500px"></canvas>
+            </div>
+        </div>*@
+        </div>
+    </div>
+</div>
+<br />
+
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+
+
+    <script type="text/javascript">
+        @*new Chart(document.getElementById("myChartNew").getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: @Html.Raw(XLabels),
+                datasets: [{
+                    label: 'Precio Regular',
+                    type: "bar",
+                    stack: "Base",
+                    backgroundColor: "#eece01",
+                    data: @Html.Raw(YValues),
+                }, {
+                    label: 'Precio Premium',
+                    type: "bar",
+                    stack: "Base",
+                    backgroundColor: "#87d84d",
+                    data: @Html.Raw(YValuesP),
+                }, {
+                    label: 'Precio Diesel',
+                    type: "bar",
+                    stack: "Base",
+                    backgroundColor: "#f8981f",
+                    data: @Html.Raw(YValuesD),
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Precios del combustible de acuerdo a la zona!'
+                },
+                scales: {
+
+                    xAxes: [{
+                        //stacked: true,
+                        stacked: true,
+                        ticks: {
+                            beginAtZero: true,
+                            maxRotation: 0,
+                            minRotation: 0
+                        }
+                    }],
+                    yAxes: [{
+                        stacked: true,
+                    }]
+                },
+            }
+        });*@
+
+        new Chart(document.getElementById("line-chart"), {
+            type: 'line',
+            data: {
+                labels: @Html.Raw(XLabelNames),
+                datasets: [{
+                    data: @Html.Raw(YValues),
+                    label: "Precio Regular",
+                    borderColor: "#1A4D2E",
+                    fill: false
+                }, {
+                    data: @Html.Raw(YValuesP),
+                    label: "Precio Premium",
+                    borderColor: "#990000",
+                    fill: false
+                }, {
+                    data: @Html.Raw(YValuesD),
+                    label: "Precio Diesel",
+                    borderColor: "#000000",
+                    fill: false
+                },
+                ]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Precios del combustible de acuerdo a la zona!'
+                }
+            }
+        });
+
+        new Chart(document.getElementById("bar-chart-grouped"), {
+            type: 'bar',
+            data: {
+                labels: @Html.Raw(XLabelNames),
+                datasets: [
+                    {
+                        label: "Precio Regular",
+                        backgroundColor: "#1A4D2E",
+                        data: @Html.Raw(YValues),
+                    }, {
+                        label: "Precio Premium",
+                        backgroundColor: "#990000",
+                        data: @Html.Raw(YValuesP),
+                    }, {
+                        label: "Precio Diesel",
+                        backgroundColor: "#000000",
+                        data: @Html.Raw(YValuesD),
+                    }
+                ]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Precios del combustible de acuerdo a la zona!'
+                }
+            }
+        });
+    </script>
+
+}

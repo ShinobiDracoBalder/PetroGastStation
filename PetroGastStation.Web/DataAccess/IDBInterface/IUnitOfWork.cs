@@ -2,5 +2,6 @@
 {
     public interface IUnitOfWork
     {
+        IGasStationRepository GasStation { get; }
     }
 }
